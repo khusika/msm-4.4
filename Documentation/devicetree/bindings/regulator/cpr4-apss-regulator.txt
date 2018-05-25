@@ -368,6 +368,27 @@ APSS specific properties:
 		    speed bins 1-to-1 or exactly 1 list which is used regardless
 		    of the speed bin found on a given chip.
 
+- qcom,cpr-fuse-combo-map
+	Usage:      optional
+	Value type: <prop-encoded-array>
+	Definition: A grouping of integer tuple lists where each tuple list (row)
+		    defines a mapping from combinations of fuse parameter ranges
+		    to fuse combo ID (i.e., map row index). Each tuple defines the
+		    beginning and ending fuse parameter value that matches. The
+		    number of tuples in each row is equal to the number of selection
+		    fuse parameters used in fuse combo logic. For MSM8953, the fuse
+		    parameters are "speed-bin", "cpr fuse revision", and "foundry id".
+		    The tuples in each row correspond to the fuses in order:
+		    "speed-bin", "cpr fuse revision" and "foundry id". An example entry
+		    for speed-bin '3', cpr fuse revisions >= '2', and foundry '2' is
+		    as shown below:
+		         <3 3>, <2 7>, <2 2>
+
+		    The number of rows in the property is arbitrary but used to size
+		    other properties. qcom,cpr-fuse-combos must be set to the number
+		    of rows specified in this property. For msm8953, the maximum number
+		    of rows for this property is 512 (8 * 8 * 8).
+
 =======
 Example
 =======
